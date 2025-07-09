@@ -8,6 +8,10 @@
   font-family: sans-serif;
 }
 
+.upload-container{
+  min-height: 600;
+}
+
 .upload-container h2 {
   text-align: center;
   color: #ffffff;

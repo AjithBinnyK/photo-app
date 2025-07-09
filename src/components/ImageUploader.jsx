@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef  } from 'react';
 
 function ImageUploader() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState('');
+  const fileInputRef = useRef(null);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [tags, setTags] = useState('');
@@ -40,13 +41,35 @@ function ImageUploader() {
     <div className="upload-container">
     <h2>📷 Upload a Photo</h2>
     <form onSubmit={handleSubmit}>
-      <input type="file" accept="image/*" onChange={handleFileChange} />
+      <input type="file" accept="image/*" onChange={handleFileChange} ref={fileInputRef}/>
 
       {previewUrl && (
-        <div>
-          <img src={previewUrl} alt="Preview" style={{ width: '100%', borderRadius: 8 }} />
+        <div style={{ margin: '10px 0', position: 'relative' }}>
+          <img src={previewUrl} alt="Preview" style={{ maxWidth: '100%',maxHeight: 250, borderRadius: 8 }} />
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedFile(null);
+              setPreviewUrl('');
+              fileInputRef.current.value = '';
+            }}
+            style={{
+              position: 'absolute',
+              top: 8,
+              right: 8,
+              background: 'rgba(0, 0, 0, 0.6)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              padding: '4px 8px',
+              cursor: 'pointer',
+            }}
+          >
+            ✖ Remove
+          </button>
         </div>
       )}
+
 
       <input
         type="text"
