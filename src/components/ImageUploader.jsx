@@ -17,8 +17,8 @@ function ImageUploader() {
       alert('Please select a valid image file');
     }
   };
-
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!selectedFile) {
@@ -26,16 +26,46 @@ function ImageUploader() {
       return;
     }
 
-    const formData = {
-      file: selectedFile,
-      title,
-      description,
-      tags: tags.split(',').map((tag) => tag.trim()),
-    };
+    const fileName = `${Date.now()}_${selectedFile.name}`;
+    const fileType = selectedFile.type;
 
-    console.log('Form Data Ready to Send:', formData);
-    // TODO: Send to backend or S3
+    try {
+      const res = await fetch(
+        `http://localhost:4000/generate-upload-url?filename=${fileName}&contentType=${fileType}`
+      );
+      const { uploadURL, key } = await res.json();
+
+      await fetch(uploadURL, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': fileType,
+        },
+        body: selectedFile,
+      });
+
+      const formData = {
+        title,
+        description,
+        tags: tags.split(',').map((tag) => tag.trim()),
+        s3Key: key,
+      };
+
+      console.log('✅ Image uploaded successfully');
+      console.log('📝 Metadata:', formData);
+
+      alert('✅ Uploaded and metadata saved (in console for now)');
+      setSelectedFile(null);
+      setPreviewUrl('');
+      fileInputRef.current.value = '';
+      setTitle('');
+      setDescription('');
+      setTags('');
+    } catch (error) {
+      console.error('❌ Upload failed:', error);
+      alert('Upload failed');
+    }
   };
+
 
   return (
     <div className="upload-container">
