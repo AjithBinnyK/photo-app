@@ -1,17 +1,71 @@
-# Photo Upload App (MVP)
+# 📸 Photo App
 
-This is a simple photo upload application that allows users to upload photos which are then stored in an AWS S3 bucket. The app is built as an MVP with a React frontend and a Node.js + Express backend. Currently, the app runs locally on localhost.
+A simple, fast, and serverless photo-sharing app built with **React + Vite**, hosted on **Amazon S3** and delivered via **CloudFront**. Automatically deployed using **GitHub Actions**.
 
-## Features
+🟢 Live Demo: [https://www.ajithbinny.com/photo-app/](https://www.ajithbinny.com/photo-app/)
 
-- Upload photos via React frontend
-- Backend API using Node.js and Express
-- Photo storage in AWS S3 bucket (configured in backend)
-- Local development setup for MVP testing
+---
 
-## Tech Stack
+## 🚀 Tech Stack
 
-- Frontend: React
-- Backend: Node.js, Express
-- Storage: AWS S3
-- Local development: Runs on `localhost`
+- **Frontend**: React 19 + Vite
+- **Hosting**: AWS S3 (Static Website Hosting)
+- **CDN**: AWS CloudFront
+- **CI/CD**: GitHub Actions
+- **Build Tool**: Vite
+- **Storage**: S3 (`ajith-photo-app` bucket under `/photo-app/` prefix)
+
+---
+
+
+## 🔨 Build & Deploy
+
+### 🔧 Local Development
+- npm install
+- npm run dev
+### 🏗 Production Build
+- npm run build
+- Output goes to the dist/ folder with relative paths (configured via base: './' in vite.config.js).
+
+  
+---
+
+
+## 📦 Deployment (CI/CD via GitHub Actions)
+This app is automatically deployed to:
+
+- S3 bucket: ajith-photo-app
+
+- Path: /photo-app/
+
+- CDN: CloudFront distribution for https://www.ajithbinny.com/photo-app/
+
+---
+
+
+## ⚙️ Deployment Trigger
+Pushes to the main branch trigger:
+
+- React build via Vite
+
+- Sync to S3 under photo-app/
+
+- CloudFront cache invalidation for /photo-app/*
+
+
+---
+
+
+## 🔐 Required GitHub Secrets
+- **AWS_ACCESS_KEY_ID**	From IAM user with S3 + CloudFront permissions
+  
+- **AWS_SECRET_ACCESS_KEY**	IAM secret access key
+  
+- **CLOUDFRONT_DISTRIBUTION_ID**	ID of your CloudFront distribution
+
+
+---
+
+
+## 📄 License
+This project is licensed under the [MIT License](LICENSE).
