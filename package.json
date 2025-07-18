@@ -2,6 +2,8 @@
   "name": "photo-app",
   "private": true,
   "version": "0.0.0",
+  "homepage": ".",
+  "description": "A simple photo application built with React and Vite",
   "type": "module",
   "scripts": {
     "dev": "vite",
