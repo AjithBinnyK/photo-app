@@ -68,4 +68,4 @@ Pushes to the main branch trigger:
 
 
 ## 📄 License
-MIT © Ajith Binny
+This project is licensed under the [MIT License](LICENSE).
