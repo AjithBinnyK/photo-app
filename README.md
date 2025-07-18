@@ -1,12 +1,17 @@
-# React + Vite
+# Photo Upload App (MVP)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple photo upload application that allows users to upload photos which are then stored in an AWS S3 bucket. The app is built as an MVP with a React frontend and a Node.js + Express backend. Currently, the app runs locally on localhost.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Upload photos via React frontend
+- Backend API using Node.js and Express
+- Photo storage in AWS S3 bucket (configured in backend)
+- Local development setup for MVP testing
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Frontend: React
+- Backend: Node.js, Express
+- Storage: AWS S3
+- Local development: Runs on `localhost`
